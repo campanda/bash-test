@@ -1,0 +1,5 @@
+sample-tests-1.sh
+  [31m✗ test_something_that_fails[0m
+  [32m✓ test_something_that_passes[0m
+
+[30;41m 1 of 2 tests failed.[0m

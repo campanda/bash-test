@@ -1,0 +1,9 @@
+---
+engines:
+  shellcheck:
+    enabled: true
+
+ratings:
+  paths:
+    - bash-test
+    - test/**.sh
