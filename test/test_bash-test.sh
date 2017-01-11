@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-curr_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-function bash-test {
-  "$curr_dir/../bash-test" "$@"
-}
+export SOURCE=".."
 
 function exclude_header {
   echo "$1" | tail -n +3
@@ -36,6 +32,8 @@ function test_invalid_option_exits_with_code_1 {
   bash-test -z >/dev/null
   test $? -eq 1
 }
+
+curr_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function test_run_all_tests_present_on_input_file {
   expected=$(cat "$curr_dir"/support/sample-tests-1.expected_output.txt)
@@ -77,4 +75,9 @@ function test_invalid_input_file_displays_error_message {
 function test_invalid_input_file_exits_with_code_1 {
   bash-test "$curr_dir"/non/existent/file.sh >/dev/null 2>&1
   test $? -eq 1
+}
+
+function test_should_locate_scripts_according_to_relative_path {
+  bash-test "$curr_dir/support/test-script-relative-path.sh" >/dev/null 2>&1
+  test $? -eq 0
 }
