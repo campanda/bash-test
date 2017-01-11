@@ -8,16 +8,23 @@ Simple test runner for [Bash][0].
 
 ## Installation
 
-Just download the file (preferably somewhere in your `$PATH`) and give it execution permissions:
+Just download the file (preferably somewhere in your `$PATH`) and give it
+execution permissions:
 
     $ curl https://raw.githubusercontent.com/campanda/bash-test/master/bash-test > /usr/local/bin/bash-test
     $ chmod +x /usr/local/bin/bash-test
 
 ## Usage
 
-Write test cases as [Shell Functions][1], starting with `test_`. Example:
+Write test cases as [Shell Functions][1], starting with `test_` and export the
+variable `SOURCE` with the relative path to the directory where your scripts
+are located.
+
+Example:
 
     #!/usr/bin/env bash
+
+    export SOURCE='../src'
 
     test_something() {
       echo "foo" | grep "bar"
@@ -25,6 +32,10 @@ Write test cases as [Shell Functions][1], starting with `test_`. Example:
 
     test_something_else() {
       test 2 -eq 2
+    }
+
+    test_my_script() {
+      test $(my-script 'some input') -eq 'some output'
     }
 
 To run the tests, simply:
