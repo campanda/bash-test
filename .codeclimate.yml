@@ -3,7 +3,11 @@ engines:
   shellcheck:
     enabled: true
 
+  markdownlint:
+    enabled: true
+
 ratings:
   paths:
     - bash-test
     - test/**.sh
+    - '**.md'

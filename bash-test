@@ -71,6 +71,7 @@ time {
   original_path=$PATH
 
   for test_file in "$@"; do
+    # shellcheck source=/dev/null
     source "$test_file"
     basename "$test_file"
 
