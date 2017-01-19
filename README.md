@@ -11,8 +11,8 @@ Simple test runner for [Bash][0].
 Just download the file (preferably somewhere in your `$PATH`) and give it
 execution permissions:
 
-    $ curl https://raw.githubusercontent.com/campanda/bash-test/master/bash-test > /usr/local/bin/bash-test
-    $ chmod +x /usr/local/bin/bash-test
+    $ curl https://git.io/bash-test > /usr/local/bin/bash-test &&\
+      chmod +x /usr/local/bin/bash-test
 
 ## Usage
 
@@ -41,6 +41,14 @@ Example:
 To run the tests, simply:
 
     $ bash-test path/to/tests.sh
+    bash-test v0.1.0 by Campanda GmbH and contributors.
+
+    tests.sh
+      ✓ test_my_script
+      ✗ test_something
+      ✓ test_something_else
+
+     1 of 3 tests failed.
 
 ## License
 
