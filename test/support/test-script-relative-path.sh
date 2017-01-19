@@ -3,5 +3,5 @@
 export SOURCE='.'
 
 function test_using_a_local_script {
-  test $(local-script) -eq '42'
+  test "$(local-script)" = '42'
 }
