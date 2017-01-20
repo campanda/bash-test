@@ -11,7 +11,7 @@ Simple test runner for [Bash][0].
 Just download the file (preferably somewhere in your `$PATH`) and give it
 execution permissions:
 
-    $ curl https://git.io/bash-test > /usr/local/bin/bash-test &&\
+    $ curl -L https://git.io/bash-test > /usr/local/bin/bash-test &&\
       chmod +x /usr/local/bin/bash-test
 
 ## Usage
