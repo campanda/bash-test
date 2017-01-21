@@ -50,6 +50,41 @@ To run the tests, simply:
 
      1 of 3 tests failed.
 
+### Test Generators
+
+Consider the following files:
+
+`my_test_cases.txt`
+
+    /       200
+    /login  302
+    /foobar 404
+
+And `my_test_generator.sh`:
+
+    #!/usr/bin/env bash
+
+    data_provider_for_test_status_code=/path/to/my_test_cases.txt
+    function _test_status_code {
+      path="$1"
+      expected_status_code="$2"
+
+      $actual=$(curl -sI http://my.website.com/$path)
+      echo "$actual" | grep -q "$expected_status_code"
+    }
+
+That would produce the following output:
+
+    $ bash-test /path/to/my_test_generator.sh
+    bash-test v0.1.0 by Campanda GmbH and contributors.
+
+    my_test_generator.sh
+      ✓ _test_status_code /       200
+      ✓ _test_status_code /login  302
+      ✓ _test_status_code /foobar 404
+
+     3 tests completed.
+
 ## License
 
 bash-test is released under the [MIT License][2].

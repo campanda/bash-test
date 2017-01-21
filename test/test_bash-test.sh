@@ -81,3 +81,9 @@ function test_should_locate_scripts_according_to_relative_path {
   bash-test "$curr_dir/support/test-script-relative-path.sh" >/dev/null 2>&1
   test $? -eq 0
 }
+
+function test_generator_runs_one_test_case_per_line_on_data_provider {
+  expected=$(cat "$curr_dir"/support/sample-test-generator.expected_output.txt)
+  actual=$(bash-test "$curr_dir"/support/sample-test-generator.sh 2>/dev/null)
+  diff <(exclude_header "$actual") <(echo -e "$expected")
+}
