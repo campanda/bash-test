@@ -43,8 +43,22 @@ function get_loaded_tests {
   declare -F | cut -d' ' -f3 | grep "^test_"
 }
 
+function run_test {
+  ((amount_of_tests++))
+
+  $1
+  result=$?
+
+  [ $result -ne 0 ] && ((failed_tests++))
+  display_test_result $result "$1"
+}
+
 function display_test_result {
   [ "$1" -eq 0 ] && echo -e "  \033[32m✓ $2\033[0m" || echo -e "  \033[31m✗ $2\033[0m"
+}
+
+function get_loaded_data_providers {
+  (set -o posix ; set) | grep "^data_provider_for" | cut -d'=' -f1
 }
 
 function display_summary {
@@ -83,13 +97,18 @@ time {
     test_names=$(get_loaded_tests)
 
     for test_name in $test_names; do
-      ((amount_of_tests++))
+      run_test "$test_name"
+    done
 
-      $test_name
-      result=$?
+    data_providers=$(get_loaded_data_providers)
 
-      [ $result -ne 0 ] && ((failed_tests++))
-      display_test_result $result "$test_name"
+    for data_provider in $data_providers; do
+      test_name=${data_provider#data_provider_for}
+
+      while read -r args; do
+        run_test "$test_name $args"
+      done < "${!data_provider}"
+      unset -v "$data_provider"
     done
 
     PATH=$original_path

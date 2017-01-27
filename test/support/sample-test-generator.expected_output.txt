@@ -1,0 +1,8 @@
+sample-test-generator.sh
+  [31m✗ _test_even_or_odd 1 even[0m
+  [32m✓ _test_even_or_odd 2 even[0m
+  [31m✗ _test_even_or_odd 3 even[0m
+  [32m✓ _test_even_or_odd 4 even[0m
+  [32m✓ _test_even_or_odd 5 odd[0m
+
+[30;41m 2 of 5 tests failed.[0m
