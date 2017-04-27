@@ -43,7 +43,7 @@ function test_run_all_tests_present_on_input_file {
 
 function test_accepts_multiple_input_files {
   expected=$(cat "$curr_dir"/support/multiple-files.expected_output.txt)
-  actual=$(bash-test "$curr_dir"/support/sample-tests-*.sh 2>/dev/null)
+  actual=$(bash-test "$curr_dir"/support/sample-tests-{1,2}.sh 2>/dev/null)
   diff <(exclude_header "$actual") <(echo -e "$expected")
 }
 
@@ -86,4 +86,12 @@ function test_generator_runs_one_test_case_per_line_on_data_provider {
   expected=$(cat "$curr_dir"/support/sample-test-generator.expected_output.txt)
   actual=$(bash-test "$curr_dir"/support/sample-test-generator.sh 2>/dev/null)
   diff <(exclude_header "$actual") <(echo -e "$expected")
+}
+
+# reproducing reported issue #6
+function test_clean_data_provider_after_running_its_correspondent_tests {
+  err="$(mktemp)"
+  bash-test "$curr_dir"/support/sample-tests-{with-data-providers,1}.sh >/dev/null 2>"$err"
+  grep 'bad substitution' "$err"
+  test $? -ne 0
 }

@@ -100,9 +100,7 @@ time {
       run_test "$test_name"
     done
 
-    data_providers=$(get_loaded_data_providers)
-
-    for data_provider in $data_providers; do
+    for data_provider in $(get_loaded_data_providers); do
       test_name=${data_provider#data_provider_for}
 
       while read -r args; do
