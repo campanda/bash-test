@@ -110,7 +110,7 @@ time {
     done
 
     PATH=$original_path
-    unset -f $test_names
+    unset -f "$test_names"
     unset -v SOURCE
 
     echo ""
