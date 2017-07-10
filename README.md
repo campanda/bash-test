@@ -41,7 +41,7 @@ Example:
 To run the tests, simply:
 
     $ bash-test path/to/tests.sh
-    bash-test v0.1.0 by Campanda GmbH and contributors.
+    bash-test v0.3.0 by Campanda GmbH and contributors.
 
     tests.sh
       ✓ test_my_script
@@ -76,7 +76,7 @@ And `my_test_generator.sh`:
 That would produce the following output:
 
     $ bash-test /path/to/my_test_generator.sh
-    bash-test v0.1.0 by Campanda GmbH and contributors.
+    bash-test v0.3.0 by Campanda GmbH and contributors.
 
     my_test_generator.sh
       ✓ _test_status_code /       200
