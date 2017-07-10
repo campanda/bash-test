@@ -94,6 +94,10 @@ time {
       PATH=$add_to_path:$original_path
     fi
 
+    if [[ "$(type -t before)" == "function" ]]; then
+      before
+    fi
+
     test_names=$(get_loaded_tests)
 
     for test_name in $test_names; do
@@ -108,6 +112,10 @@ time {
       done < "${!data_provider}"
       unset -v "$data_provider"
     done
+
+    if [[ "$(type -t after)" == "function" ]]; then
+      after
+    fi
 
     PATH=$original_path
     unset -f $test_names

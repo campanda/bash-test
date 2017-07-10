@@ -2,4 +2,4 @@
 language: bash
 
 script:
-  - ./bash-test test/test_bash-test.sh
+  - ./bash-test test/test_*.sh
