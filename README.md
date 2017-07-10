@@ -85,6 +85,28 @@ That would produce the following output:
 
      3 tests completed.
 
+### Setup and Teardown
+
+In `some_test.sh`:
+
+    #!/usr/bin/env bash
+
+    before() {
+      export CAKE_FILLER='chocolate'
+    }
+
+    test_app_configuration_through_env {
+      $response=$(curl -s http://my.website.com/cake-filler)
+      echo "$response" | grep -q "chocolate"
+    }
+
+    after() {
+      unset CAKE_FILLER
+    }
+
+`before` and `after` functions are executed before and after executing
+the tests from the current file.
+
 ## License
 
 bash-test is released under the [MIT License][2].
